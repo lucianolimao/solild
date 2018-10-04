@@ -15,7 +15,6 @@ namespace dip
     public class Person
     {
         public string Name;
-        // public DateTime DateOfBirth;
     }
 
  public interface IRelationshipBrowser
@@ -33,8 +32,6 @@ namespace dip
       relations.Add((child, Relationship.Child, parent));
     }
 
-    //public List<(Person, Relationship, Person)> Relations => relations;
-
     public IEnumerable<Person> FindAllChildrenOf(string name)
     {
       return relations
@@ -46,9 +43,7 @@ namespace dip
   {
     public Research(IRelationshipBrowser browser) {
       foreach (var p in browser.FindAllChildrenOf("John"))
-      {
         WriteLine($"John has a child called {p.Name}");
-      }
     }
   }
 
