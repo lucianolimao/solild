@@ -8,7 +8,7 @@ namespace ocp
         {
             foreach(Product product in products)
             {
-                if(product.Color == color)
+                if(product.Color.Equals(color))
                     yield return product;
             }
         }
