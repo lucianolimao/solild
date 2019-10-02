@@ -41,7 +41,7 @@ namespace lsp
             WriteLine($"{rc} has area {Area(rc)}");
 
             // should be able to substitute a base type for a subtype
-            /*Square*/ Rectangle sq = new Square();
+            Rectangle sq = new Square();
             sq.Width = 4;
             WriteLine($"{sq} has area {Area(sq)}");
             WriteLine("");

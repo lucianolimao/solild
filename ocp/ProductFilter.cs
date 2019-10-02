@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using ocp.Interfaces;
 
 namespace ocp
@@ -7,9 +8,12 @@ namespace ocp
     {
         public IEnumerable<Product> Filter(IEnumerable<Product> items, ISpecification<Product> spec)
         {
-            foreach (var i in items)
-                if (spec.IsSatisfied(i))
-                    yield return i;
+            
+            return items.Where(x => spec.IsSatisfied(x));
+
+            // foreach (var i in items)
+            //     if (spec.IsSatisfied(i))
+            //         yield return i;
         }
     }
 }

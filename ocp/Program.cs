@@ -14,27 +14,27 @@ namespace ocp
 
             Product[] products = {apple, tree, house};
 
-            ProductFilterNoRefactor productFilter = new ProductFilterNoRefactor();
-            var productsByColor = productFilter.FilterByColor(Color.Green, products);
+            // ProductFilterNoRefactor productFilter = new ProductFilterNoRefactor();
+            // var productsByColor = productFilter.FilterByColor(Color.Green, products);
 
-            ExibeProdutos(products);
+            //ExibeProdutos(productsByColor);
 
-            // var productFilter = new ProductFilter();
-            // var itens = productFilter.Filter(products, new ColorSpecification(Color.Blue));
+            var productFilter = new ProductFilter();
+            var itens = productFilter.Filter(products, new ColorSpecification(Color.Blue));
 
-            // Console.WriteLine("Blue products (new):");
+            Console.WriteLine("Blue products (new):");
 
-            // foreach(var item in itens)
-            //     Console.WriteLine(item.Name);
+            foreach(var item in itens)
+                Console.WriteLine(item.Name);
 
-            // Console.WriteLine("");
+            Console.WriteLine("");
 
-            // Console.WriteLine("Green products (new):");
+            Console.WriteLine("Green products (new):");
 
-            // itens = productFilter.Filter(products, new ColorSpecification(Color.Green));
+            itens = productFilter.Filter(products, new SizeSpecification(Size.Large));
 
-            // foreach(var item in itens)
-            //     Console.WriteLine(item.Name);
+            foreach(var item in itens)
+                Console.WriteLine(item.Name);
 
             Console.ReadLine();
         }

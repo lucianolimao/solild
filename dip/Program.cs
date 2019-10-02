@@ -17,43 +17,44 @@ namespace dip
         public string Name;
     }
 
- public interface IRelationshipBrowser
-  {
-    IEnumerable<Person> FindAllChildrenOf(string name);
-  }
-
-  public class Relationships : IRelationshipBrowser // low-level
-  {
-    private List<(Person,Relationship,Person)> relations = new List<(Person, Relationship, Person)>();
-
-    public void AddParentAndChild(Person parent, Person child)
+    public interface IRelationshipBrowser
     {
-      relations.Add((parent, Relationship.Parent, child));
-      relations.Add((child, Relationship.Child, parent));
+        IEnumerable<Person> FindAllChildrenOf(string name);
     }
 
-    public IEnumerable<Person> FindAllChildrenOf(string name)
+    public class Relationships : IRelationshipBrowser // low-level
     {
-      return relations
-        .Where(x => x.Item1.Name == name  && x.Item2 == Relationship.Parent).Select(r => r.Item3);
-    }
-  }
+        private List<(Person, Relationship, Person)> relations = new List<(Person, Relationship, Person)>();
 
-  public class Research
-  {
-    public Research(IRelationshipBrowser browser) {
-      foreach (var p in browser.FindAllChildrenOf("John"))
-        WriteLine($"John has a child called {p.Name}");
+        public void AddParentAndChild(Person parent, Person child)
+        {
+            relations.Add((parent, Relationship.Parent, child));
+            relations.Add((child, Relationship.Child, parent));
+        }
+
+        public IEnumerable<Person> FindAllChildrenOf(string name)
+        {
+            return relations
+              .Where(x => x.Item1.Name == name && x.Item2 == Relationship.Parent).Select(r => r.Item3);
+        }
     }
-  }
+
+    public class Research
+    {
+        public Research(IRelationshipBrowser browser)
+        {
+            foreach (var p in browser.FindAllChildrenOf("John"))
+                WriteLine($"John has a child called {p.Name}");
+        }
+    }
 
     public static class Program
     {
         static void Main(string[] args)
         {
-            var parent = new Person {Name = "John"};
-            var child1 = new Person {Name = "Chris"};
-            var child2 = new Person {Name = "Matt"};
+            var parent = new Person { Name = "Johnny" };
+            var child1 = new Person { Name = "Christina" };
+            var child2 = new Person { Name = "Matthew" };
 
             // low-level module
             var relationships = new Relationships();
