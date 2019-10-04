@@ -1,4 +1,4 @@
-﻿﻿using static System.Console;
+using static System.Console;
 
 namespace lsp
 {
@@ -42,6 +42,9 @@ namespace lsp
 
             // should be able to substitute a base type for a subtype
             Rectangle sq = new Square();
+
+            //Square sq = new Square();
+
             sq.Width = 4;
             WriteLine($"{sq} has area {Area(sq)}");
             WriteLine("");
