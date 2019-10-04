@@ -1,6 +1,7 @@
-using dip.Interfaces;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using static System.Console;
+using System.Linq;
 
 namespace dip
 {
@@ -47,34 +48,22 @@ namespace dip
         }
     }
 
-
     public static class Program
     {
         static void Main(string[] args)
         {
-
             var parent = new Person { Name = "Johnny" };
             var child1 = new Person { Name = "Christina" };
             var child2 = new Person { Name = "Matthew" };
+            var child3 = new Person { Name = "Anna" };
 
-            var usuario = new Usuario
-            {
-                Id = Guid.NewGuid(),
-                Nome = "Luciano Lima",
-                Email = "lima@lucianolima.com.br",
-                CPF = "01234567890"
-            };
+            // low-level module
+            var relationships = new Relationships();
+            relationships.AddParentAndChild(parent, child1);
+            relationships.AddParentAndChild(parent, child2);
+            relationships.AddParentAndChild(child2, child3);
 
-            //var usuarioRepository = new UsuarioRepository();
-            //var result = usuarioRepository.Adicionar(usuario);
-            //WriteLine(result ? "Adicionado" : "Erro ao adicionar");
-
-            var usuaroService = Container.Get<IService<Usuario>>();
-            var resultOk = usuaroService.Inserir(usuario);
-            WriteLine(resultOk ? "Adicionado" : "Erro ao adicionar");
-
-            ReadLine();
-
+            new Research(relationships);
         }
     }
 }
