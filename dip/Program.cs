@@ -55,11 +55,13 @@ namespace dip
             var parent = new Person { Name = "Johnny" };
             var child1 = new Person { Name = "Christina" };
             var child2 = new Person { Name = "Matthew" };
+            var child3 = new Person { Name = "Anna" };
 
             // low-level module
             var relationships = new Relationships();
             relationships.AddParentAndChild(parent, child1);
             relationships.AddParentAndChild(parent, child2);
+            relationships.AddParentAndChild(child2, child3);
 
             new Research(relationships);
         }
